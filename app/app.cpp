@@ -13,7 +13,6 @@ namespace vsite::oop::v8
 
     char input_op(std::istream& is)
     {
-        char oper = 0;
         char a;
         is >> a;
         std::string operators = "+-*/";
@@ -21,13 +20,10 @@ namespace vsite::oop::v8
         {
             if (a == operators[i])
             {
-                oper = a;
-                break;
+                return a;
             }
         }
-        if (oper == 0)
-            throw not_operator();
-        return a;
+        throw not_operator();
     }
 
     double calc(int x, char oper, int y)
@@ -43,7 +39,7 @@ namespace vsite::oop::v8
         case '/':
             if (y == 0)
                 throw divide_zero();
-            return x / double(y);
+            return x / static_cast<double>(y);
         default:
             throw not_operator();
         }

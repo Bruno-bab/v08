@@ -12,37 +12,34 @@ namespace vsite::oop::v8
     class exceptions
     {
     public:
-        virtual std::string details()
-        {
-            return "Unknown error";
-        }
+        virtual std::string details() const = 0;
         virtual ~exceptions() = default;
     };
 
     class not_number : public exceptions
     {
     public:
-        std::string details() override
+        std::string details() const override
         {
-            return "That is not a number";
+            return "not a number";
         }
     };
 
     class not_operator : public exceptions
     {
     public:
-        std::string details() override 
+        std::string details() const override 
         {
-            return "That is not an operator";
+            return "invalid operation";
         }
     };
 
     class divide_zero : public exceptions
     {
     public:
-        std::string details() override 
+        std::string details() const override 
         { 
-            return "You tried to divide by zero"; 
+            return "divide by zero"; 
         }
     };
 }
